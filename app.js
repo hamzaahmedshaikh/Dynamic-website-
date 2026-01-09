@@ -5,36 +5,21 @@ const cartTotal = document.getElementById("cart-total");
 const cartBtn = document.getElementById("cart-btn");
 const checkoutBtn = document.getElementById("checkout-btn");
 const clearCartBtn = document.getElementById("clear-cart");
-let cart = [];
+const searchForm = document.getElementById("search-form");
+const searchInput = document.getElementById("search-input");
+const categorySelect = document.getElementById("category-select");
+const minPriceInput = document.getElementById("min-price");
+const maxPriceInput = document.getElementById("max-price");
+const applyFiltersBtn = document.getElementById("apply-filters");
+const resetFiltersBtn = document.getElementById("reset-filters");
 
-const products = [
-  { id: 1, title: "Service Shoes", price: 4500, image: "https://via.placeholder.com/200x150?text=Service+Shoes" },
-  { id: 2, title: "Bata Sneakers", price: 3200, image: "https://via.placeholder.com/200x150?text=Bata+Sneakers" },
-  { id: 3, title: "Stylo Heels", price: 5500, image: "https://via.placeholder.com/200x150?text=Stylo+Heels" },
-  { id: 4, title: "Borjan Loafers", price: 6000, image: "https://via.placeholder.com/200x150?text=Borjan+Loafers" }
-];
-
-function renderProducts() {
-  productList.innerHTML = "";
-  products.forEach(product => {
-    const col = document.createElement("div");
-    col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
-    col.innerHTML = `
-      <div class="card h-100">
-        <img src="${product.image}" class="card-img-top" alt="${product.title}">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">${product.title}</h5>
-          <p class="price-tag mb-3">PKR ${product.price}</p>
-          <div class="mt-auto d-grid gap-2">
-            <button class="btn btn-primary add-to-cart"><i class="fa-solid fa-cart-plus me-1"></i>Add to cart</button>
-          </div>
-        </div>
-      </div>
-    `;
-    col.querySelector(".add-to-cart").addEventListener("click", () => addToCart(product));
-    productList.appendChild(col);
-  });
-}
+let products = [
+  { id: 1, title: "Service Shoes", category: "shoes", price: 4500, image: "https://via.placeholder.com/200x150?text=Service+Shoes", description: "Durable leather shoes popular in Pakistan.", rating: { rate: 4.2, count: 120 } },
+  { id: 2, title: "Bata Sneakers", category: "shoes", price: 3200, image: "https://via.placeholder.com/200x150?text=Bata+Sneakers", description: "Comfortable sneakers for everyday wear.", rating: { rate: 4.5, count: 200 } },
+  { id: 3, title: "Stylo Heels", category: "shoes", price: 5500, image: "https://via.placeholder.com/200x150?text=Stylo+Heels", description: "Elegant heels for formal occasions.", rating: { rate: 4.0, count: 90 } },
+  { id: 4, title: "Khaadi Kurta", category: "clothing", price: 2500, image: "https://via.placeholder.com/200x150?text=Khaadi+Kurta", description: "Traditional kurta with modern design.", rating: { rate: 4.6, count: 300 } },
+  { id: 5, title: "Borjan Loafers", category: "shoes", price: 6000, image: "https://via.placeholder.com/200x150?text=Borjan+Loafers", description: "Stylish loafers for men.", rating: { rate: 4.3, count: 150 } },
+  { id: 6, title: "J.", category: "clothing", price: 3500, image: "https://via.placeholder.com/200x150?text=J.+Kur}
 
 function addToCart(product) {
   const existing = cart.find(item => item.id === product.id);
